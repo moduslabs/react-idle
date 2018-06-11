@@ -1,0 +1,33 @@
+# ignore all files starting with ~
+~*
+
+# ignore dependency directories
+node_modules/
+
+# ignore OS generated files
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+# ignore Editor files
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+.idea
+.vscode
+
+# ignore log files
+*.log
+
+# ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ignore NPM distro
+dist/
