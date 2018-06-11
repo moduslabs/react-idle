@@ -3,6 +3,10 @@
 
 Render components when browser is idle.
 
+The idea is to allow Above The Fold content to render as soon as possible, letting the rest of the app render and update when the browser is idle.
+
+This component uses [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback). Read more about performance benefits [here](https://developers.google.com/web/updates/2015/08/using-requestidlecallback). `requestIdleCallback` is also used in [Facebook](https://github.com/facebook/react/blob/233195cb6bc632ade61a8f64569b4d94061860d6/src/renderers/shared/fiber/ReactFiberScheduler.js#L815-L818).
+
 ## Getting started
 Install `react-idle` using npm.
 
