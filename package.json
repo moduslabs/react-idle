@@ -21,8 +21,7 @@
     "precommit": "lint-staged",
     "prettier": "prettier --write 'src/**/*.js'",
     "prettier:diff": "prettier --list-different 'src/**/*.js'",
-    "postpublish": "npm run deploy",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "typecheck": "flow check"
   },
