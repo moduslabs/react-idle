@@ -15,7 +15,16 @@
     "clean:demo": "rimraf build",
     "clean:es": "rimraf dist/es",
     "clean:umd": "rimraf dist/umd",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . -f table",
+    "lint:fix": "eslint . -f table --fix",
+    "prebuild": "npm run typecheck && npm run lint",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write 'src/**/*.js'",
+    "prettier:diff": "prettier --list-different 'src/**/*.js'",
+    "postpublish": "npm run deploy",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "flow check"
   },
   "babel": {
     "presets": [
@@ -37,6 +46,7 @@
   "devDependencies": {
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
+    "babel-eslint": "8.2.3",
     "babel-plugin-external-helpers": "6.22.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "babel-plugin-transform-runtime": "6.23.0",
@@ -45,8 +55,19 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "cross-env": "5.1.6",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-flowtype": "2.49.3",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-prettier": "2.6.0",
+    "eslint-plugin-react": "7.9.1",
     "flow-bin": "0.74.0",
     "flow-copy-source": "2.0.0",
+    "husky": "0.14.3",
+    "lint-staged": "7.2.0",
+    "prettier": "1.13.5",
     "rimraf": "2.6.2",
     "rollup": "0.60.1",
     "rollup-plugin-babel": "3.0.4",
@@ -58,5 +79,11 @@
   "peerDependencies": {
     "react": "^15.3.0 || ^16.0.0-alpha",
     "react-dom": "^15.3.0 || ^16.0.0-alpha"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "npm run lint:fix",
+      "git add"
+    ]
   }
 }
