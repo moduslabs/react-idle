@@ -31,14 +31,25 @@
       "./.babelrc.js"
     ]
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "TBA"
+    "url": "https://github.com/ModusCreateOrg/react-idle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ModusCreateOrg/react-idle/issues"
   },
   "keywords": [
     "react-idle",
     "react",
-    "requestidlecallback"
+    "requestidlecallback",
+    "react",
+    "reactjs",
+    "reactjs",
+    "onidle",
+    "whenidle"
   ],
   "author": "Grgur Grisogono <grgur@moduscreate.com>",
   "user": "grgur",
