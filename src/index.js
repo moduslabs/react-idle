@@ -58,7 +58,8 @@ const onIdle =
   isBrowser && typeof window.requestIdleCallback === 'function'
     ? window.requestIdleCallback
     : fallbackOnIdle;
-const offIdle = onIdle === window.requestIdleCallback ? window.cancelIdleCallback : fallbackOffIdle;
+const offIdle =
+  onIdle === isBrowser && window.requestIdleCallback ? window.cancelIdleCallback : fallbackOffIdle;
 
 export default class OnIdle extends React.Component<Props, State> {
   static defaultProps = {
@@ -97,7 +98,6 @@ export default class OnIdle extends React.Component<Props, State> {
     // Flow will complain because this.job is either TimeoutID or IdleCallbackID
     // and it can't mix them. We know that clearTimeout will consume only TimeoutID
     // but we need to find a way work this out with Flow
-    // $FlowFixMe
     if (this.job) {
       // $FlowFixMe
       offIdle(this.job);
