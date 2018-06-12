@@ -59,7 +59,7 @@ const onIdle =
     ? window.requestIdleCallback
     : fallbackOnIdle;
 const offIdle =
-  onIdle === isBrowser && window.requestIdleCallback ? window.cancelIdleCallback : fallbackOffIdle;
+  isBrowser && onIdle === window.requestIdleCallback ? window.cancelIdleCallback : fallbackOffIdle;
 
 export default class OnIdle extends React.Component<Props, State> {
   static defaultProps = {
