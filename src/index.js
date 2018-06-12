@@ -39,25 +39,26 @@ const isBrowser = !!(
 
 // Replacement for requestIdleCallback in SSR - execute immediately
 const fallbackOnIdle: (Function, IdleCallback) => TimeoutID | null = (cb: Function) => {
-  if (isBrowser) return setTimeout(cb, 1);
+  if (isBrowser) {
+    return setTimeout(cb, 1);
+  }
   cb();
   return null;
 };
 
 const fallbackOffIdle = (id?: TimeoutID) => {
-  if (id) clearTimeout(id)
+  if (id) {
+    // $FlowFixMe
+    clearTimeout(id);
+  }
 };
 
 // Defaulting to immediate rendering unless browser supports requestIdleCallback
-let onIdle = fallbackOnIdle;
-
-let offIdle = fallbackOffIdle;
-
-if (isBrowser && typeof window.requestIdleCallback === 'function') {
-  // This is what we are here for. We are safe to use requestIdleCallback
-  onIdle = window.requestIdleCallback;
-  offIdle = window.cancelIdleCallback;
-}
+const onIdle =
+  isBrowser && typeof window.requestIdleCallback === 'function'
+    ? window.requestIdleCallback
+    : fallbackOnIdle;
+const offIdle = onIdle === window.requestIdleCallback ? window.cancelIdleCallback : fallbackOffIdle;
 
 export default class OnIdle extends React.Component<Props, State> {
   static defaultProps = {
@@ -97,7 +98,10 @@ export default class OnIdle extends React.Component<Props, State> {
     // and it can't mix them. We know that clearTimeout will consume only TimeoutID
     // but we need to find a way work this out with Flow
     // $FlowFixMe
-    if (this.job) offIdle(this.job);
+    if (this.job) {
+      // $FlowFixMe
+      offIdle(this.job);
+    }
   };
 
   requestIdle = () => {
