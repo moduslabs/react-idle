@@ -54,12 +54,9 @@ const fallbackOffIdle = (id?: TimeoutID) => {
 };
 
 // Defaulting to immediate rendering unless browser supports requestIdleCallback
-const onIdle =
-  isBrowser && typeof window.requestIdleCallback === 'function'
-    ? window.requestIdleCallback
-    : fallbackOnIdle;
-const offIdle =
-  isBrowser && onIdle === window.requestIdleCallback ? window.cancelIdleCallback : fallbackOffIdle;
+const isIdleCallbackSupported = isBrowser && typeof window.requestIdleCallback;
+const onIdle = isIdleCallbackSupported ? window.requestIdleCallback : fallbackOnIdle;
+const offIdle = isIdleCallbackSupported ? window.cancelIdleCallback : fallbackOffIdle;
 
 export default class OnIdle extends React.Component<Props, State> {
   static defaultProps = {
