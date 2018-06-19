@@ -7,6 +7,9 @@ The idea is to allow Above The Fold content to render as soon as possible, letti
 
 This component uses [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback). Read more about performance benefits [here](https://developers.google.com/web/updates/2015/08/using-requestidlecallback). `requestIdleCallback` is also used in [Facebook](https://github.com/facebook/react/blob/233195cb6bc632ade61a8f64569b4d94061860d6/src/renderers/shared/fiber/ReactFiberScheduler.js#L815-L818).
 
+## Demo
+See a working [react-idle demo](https://react-idle.modus.app/) and compare rendering performance between syncronous rendering and rendering on idle.
+
 ## Getting started
 Install `react-idle` using npm.
 
