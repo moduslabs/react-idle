@@ -1,0 +1,70 @@
+.idle-check {
+  display: block;
+  margin-top: 3em;
+}
+
+.bar-chart {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  padding: 20px;
+}
+
+.bar-chart dt {
+  align-self: flex-start;
+  width: 100%;
+  font-weight: 700;
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.bar-chart dd {
+  margin: 0;
+}
+
+.bar-chart .text {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 6rem;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  justify-content: flex-end;
+}
+
+.bar-chart .percentage {
+  font-size: .8em;
+  line-height: 1;
+  text-transform: uppercase;
+  width: calc(100% - 6rem);
+  height: 40px;
+  margin-left: 6rem;
+  background: repeating-linear-gradient(to right, #ddd, #ddd 1px, #fff 1px, #fff 5%);
+}
+
+.bar-chart .percentage:after {
+  content: "";
+  display: block;
+  background-color: #4e8941;
+  width: 50px;
+  margin-bottom: 10px;
+  height: 90%;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  transition: background-color .3s ease;
+  cursor: pointer;
+  width: var(--value);
+}
+
+.bar-chart.percentage:hover:after, .percentage:focus:after {
+  background-color: #aaa;
+}

@@ -1,0 +1,33 @@
+.simple {
+  display: flex;
+  align-items: stretch;
+}
+
+.simple aside {
+  flex: 1 0 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  outline-color: transparent;
+  outline-style: none;
+  padding: 1em 1em 0;
+}
+
+.simple article {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.simple button {
+  height: 2rem;
+  margin-bottom: 1em;
+  -webkit-appearance: none;
+}
+
+.simple .content-area {
+  margin: 1em 0;
+  color: rgba(0,0,0,0.4);
+}

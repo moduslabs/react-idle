@@ -1,4 +1,6 @@
 node_modules/*
+examples/**/*
+!examples/src/**/*
 
 # NPM distro
 dist/*
