@@ -1,6 +1,7 @@
 node_modules/*
 examples/**/*
 !examples/src/**/*
+coverage/**/*
 
 # NPM distro
 dist/*

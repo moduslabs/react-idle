@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Server-side rendering renders just placeholder 1`] = `"<div class=\\"placeholder\\" data-reactroot=\\"\\">Waiting</div>"`;
+
+exports[`Server-side rendering skips rendering 1`] = `""`;
+
+exports[`Smoke tests renders delayed 1`] = `null`;
+
+exports[`Smoke tests renders placeholder 1`] = `
+<div
+  className="placeholder"
+>
+  Waiting
+</div>
+`;

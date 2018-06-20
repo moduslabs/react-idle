@@ -54,7 +54,7 @@ const fallbackOffIdle = (id?: TimeoutID) => {
 };
 
 // Defaulting to immediate rendering unless browser supports requestIdleCallback
-const isIdleCallbackSupported = isBrowser && typeof window.requestIdleCallback;
+const isIdleCallbackSupported = isBrowser && typeof window.requestIdleCallback === 'function';
 const onIdle = isIdleCallbackSupported ? window.requestIdleCallback : fallbackOnIdle;
 const offIdle = isIdleCallbackSupported ? window.cancelIdleCallback : fallbackOffIdle;
 
@@ -115,6 +115,11 @@ export default class OnIdle extends React.Component<Props, State> {
   };
 
   render() {
+    // Don't render anything if we are skipping SSR
+    if (((process.env.NODE_ENV === 'test' && window.__SSR__) || !isBrowser) && this.props.skipSSR) {
+      return null;
+    }
+
     return this.state.ready ? this.props.children : this.props.placeholder;
   }
 }

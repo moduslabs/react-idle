@@ -10,9 +10,11 @@ extends:
   - prettier
   - prettier/react
   - prettier/flowtype
+  - plugin:jest/recommended
 plugins:
   - flowtype
   - prettier
+  - jest
 rules:
   react/jsx-filename-extension: 0
   react/prefer-stateless-function: 0
@@ -20,3 +22,4 @@ rules:
   react/sort-comp: 0
   import/extensions: 0
   import/no-unresolved: 0
+  no-underscore-dangle: 0

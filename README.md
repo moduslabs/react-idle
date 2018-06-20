@@ -17,7 +17,6 @@ Install `react-idle` using npm.
 npm install @modus/react-idle --save
 ```
 
-
 ### Usage
 ```jsx
 import * as React from 'react';
@@ -51,9 +50,17 @@ NPM will not automatically install these dependencies for you, but it will show 
 
 ## Contributing
 
-### Publishing
+### Testing
+This project uses Jest for unit testing. To execute tests run this command:
+
+```sh
+npm test
 ```
-npm publish --access public
+
+It's useful to run tests in watch mode when developing for incremental updates.
+
+```sh
+npm run test:watch
 ```
 
 ## License

@@ -1,6 +1,6 @@
 {
   "name": "@modus/react-idle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Render components when browser is idle",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
@@ -22,7 +22,9 @@
     "prettier": "prettier --write 'src/**/*.js'",
     "prettier:diff": "prettier --list-different 'src/**/*.js'",
     "prepare": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:staged": "cross-env NODE_ENV=test jest --bail --findRelatedTests",
     "typecheck": "flow check"
   },
   "babel": {
@@ -70,14 +72,19 @@
     "eslint-config-prettier": "2.9.0",
     "eslint-plugin-flowtype": "2.49.3",
     "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-jest": "21.17.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.9.1",
     "flow-bin": "0.74.0",
     "flow-copy-source": "2.0.0",
     "husky": "0.14.3",
+    "jest": "23.1.0",
     "lint-staged": "7.2.0",
     "prettier": "1.13.5",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-test-renderer": "16.4.1",
     "rimraf": "2.6.2",
     "rollup": "0.60.1",
     "rollup-plugin-babel": "3.0.4",
@@ -92,8 +99,19 @@
   },
   "lint-staged": {
     "src/**/*.js": [
+      "npm run test:staged",
       "npm run lint:fix",
       "git add"
     ]
+  },
+  "jest": {
+    "globals": {
+      "__DEV__": true
+    },
+    "roots": [
+      "./src"
+    ],
+    "verbose": true,
+    "testRegex": ".+\\.spec\\.js$"
   }
 }
