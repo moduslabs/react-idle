@@ -32,3 +32,4 @@ Thumbs.db
 # ignore NPM distro
 dist/
 /coverage
+/reports
