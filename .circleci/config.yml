@@ -1,0 +1,103 @@
+aliases:
+  - &restore-app-cache
+    keys:
+      - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - v1-repo-
+  - &restore-npm-cache
+    keys:
+      - v1-npm-packages-{{ checksum "package-lock.json" }}
+      - v1-npm-packages-master
+      - v1-npm-packages-
+
+version: 2
+
+jobs:
+  checkout_code:
+    docker:
+      - image: circleci/node:10
+        environment:
+          TERM: xterm
+    working_directory: ~/src
+    steps:
+      - restore_cache: *restore-app-cache
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ./
+
+  install_dependencies:
+    docker:
+      - image: circleci/node:10
+        environment:
+          TERM: xterm
+    working_directory: ~/src
+    parallelism: 1
+    steps:
+      - restore_cache: *restore-app-cache
+      - restore_cache: *restore-npm-cache
+      - run:
+          name: Installing dependencies as if this was a dev machine
+          environment:
+            NODE_ENV: development
+          command: npm i
+      - save_cache:
+          key: v1-npm-packages-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules/
+
+  tests:
+    docker:
+      - image: circleci/node:10
+        environment:
+          TERM: xterm
+    working_directory: ~/src
+    parallelism: 1
+    steps:
+      - restore_cache: *restore-app-cache
+      - restore_cache: *restore-npm-cache
+      - run:
+          name: Run jest
+          command: npm run test:ci
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/jest.xml"
+      - run:
+          name: Run eslint
+          command: npm run lint:ci
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+
+  build:
+    docker:
+      - image: circleci/node:10
+        environment:
+          TERM: xterm
+    working_directory: ~/src
+    parallelism: 1
+    steps:
+      - restore_cache: *restore-app-cache
+      - restore_cache: *restore-npm-cache
+      - run:
+          name: Building for deployment to production
+          command: npm run build
+      - save_cache:
+          key: build-prod-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - dist
+
+workflows:
+  version: 2
+  testing:
+    jobs:
+      - checkout_code
+      - install_dependencies:
+          requires:
+            - checkout_code
+      - tests:
+          requires:
+            - install_dependencies
+      - build:
+          requires:
+            - install_dependencies

@@ -17,6 +17,7 @@
     "clean:umd": "rimraf dist/umd",
     "lint": "eslint . -f table",
     "lint:fix": "eslint . -f table --fix",
+    "lint:ci": "eslint . --format junit --output-file reports/junit/eslint.xml",
     "prebuild": "npm run typecheck && npm run lint",
     "precommit": "lint-staged",
     "prettier": "prettier --write 'src/**/*.js'",
@@ -25,6 +26,7 @@
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:staged": "cross-env NODE_ENV=test jest --bail --findRelatedTests",
+    "test:ci": "cross-env NODE_ENV=test jest --runInBand --coverage -i --reporters jest-silent-reporter --testResultsProcessor=jest-junit --ci",
     "typecheck": "flow check"
   },
   "babel": {
@@ -80,6 +82,8 @@
     "flow-copy-source": "2.0.0",
     "husky": "0.14.3",
     "jest": "23.1.0",
+    "jest-junit": "5.1.0",
+    "jest-silent-reporter": "0.0.5",
     "lint-staged": "7.2.0",
     "prettier": "1.13.5",
     "react": "16.4.1",

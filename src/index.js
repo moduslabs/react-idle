@@ -120,6 +120,6 @@ export default class OnIdle extends React.Component<Props, State> {
       return null;
     }
 
-    return this.state.ready ? this.props.children : this.props.placeholder;
+      return this.state.ready ? this.props.children : this.props.placeholder;
   }
 }
