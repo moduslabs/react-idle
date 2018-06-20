@@ -14,7 +14,7 @@ version: 2
 jobs:
   checkout_code:
     docker:
-       - image: circleci/node:10
+      - image: circleci/node:10
         environment:
           TERM: xterm
     working_directory: ~/src
@@ -28,7 +28,7 @@ jobs:
 
   install_dependencies:
     docker:
-       - image: circleci/node:10
+      - image: circleci/node:10
         environment:
           TERM: xterm
     working_directory: ~/src
@@ -48,7 +48,7 @@ jobs:
 
   tests:
     docker:
-       - image: circleci/node:10
+      - image: circleci/node:10
         environment:
           TERM: xterm
     working_directory: ~/src
@@ -71,7 +71,7 @@ jobs:
 
   build:
     docker:
-       - image: circleci/node:10
+      - image: circleci/node:10
         environment:
           TERM: xterm
     working_directory: ~/src
