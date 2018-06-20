@@ -17,7 +17,7 @@
     "clean:umd": "rimraf dist/umd",
     "lint": "eslint . -f table",
     "lint:fix": "eslint . -f table --fix",
-    "lint:ci": "eslint . --format junit --output-file ~/reports/junit/eslint.xml",
+    "lint:ci": "eslint . --format junit --output-file reports/junit/eslint.xml",
     "prebuild": "npm run typecheck && npm run lint",
     "precommit": "lint-staged",
     "prettier": "prettier --write 'src/**/*.js'",
