@@ -1,7 +1,7 @@
 # React Idle
 [![CircleCI](https://circleci.com/gh/ModusCreateOrg/react-idle/tree/master.svg?style=svg)](https://circleci.com/gh/ModusCreateOrg/react-idle/tree/master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/326d2ade32726ead6067/maintainability)](https://codeclimate.com/github/ModusCreateOrg/react-idle/maintainability)
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ModusCreateOrg/react-idle/blob/master/LICENSE)
 
 Render components when browser is idle.
 
