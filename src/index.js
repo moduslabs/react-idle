@@ -104,8 +104,13 @@ export default class OnIdle extends React.Component<Props, State> {
   requestIdle = () => {
     this.clearJob();
     if (this.props.skipSSR !== true) {
-      this.job = onIdle(this.readyToRender, { timeout: DEFAULT_TIMEOUT });
+      this.job = onIdle(this.queueRendering, { timeout: DEFAULT_TIMEOUT });
     }
+  };
+
+  // Render when DOM is ready, not earlier
+  queueRendering = () => {
+    requestAnimationFrame(this.readyToRender);
   };
 
   readyToRender = () => {
@@ -120,6 +125,6 @@ export default class OnIdle extends React.Component<Props, State> {
       return null;
     }
 
-      return this.state.ready ? this.props.children : this.props.placeholder;
+    return this.state.ready ? this.props.children : this.props.placeholder;
   }
 }
