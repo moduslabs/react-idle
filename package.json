@@ -47,7 +47,7 @@
   "keywords": [
     "react-idle",
     "react",
-    "requestidlecallback",
+    "requestanimationframe",
     "react",
     "reactjs",
     "reactjs",
