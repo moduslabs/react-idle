@@ -2,13 +2,13 @@
 [![CircleCI](https://circleci.com/gh/ModusCreateOrg/react-idle/tree/master.svg?style=svg)](https://circleci.com/gh/ModusCreateOrg/react-idle/tree/master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/326d2ade32726ead6067/maintainability)](https://codeclimate.com/github/ModusCreateOrg/react-idle/maintainability)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/ModusCreateOrg/react-idle/blob/master/LICENSE)
-[![powered_by Modus_Create](https://img.shields.io/badge/powered_by-Modus_Create-blue.svg)](https://moduscreate.com)
+[![Enterprise Web Development](https://img.shields.io/badge/powered_by-Modus_Create-blue.svg)](https://moduscreate.com)
 
 Render components when browser is idle.
 
 The idea is to allow Above The Fold content to render as soon as possible, letting the rest of the app render and update when the browser is idle.
 
-This component uses [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback). Read more about performance benefits [here](https://developers.google.com/web/updates/2015/08/using-requestidlecallback). `requestIdleCallback` is also used in [Facebook](https://github.com/facebook/react/blob/233195cb6bc632ade61a8f64569b4d94061860d6/src/renderers/shared/fiber/ReactFiberScheduler.js#L815-L818).
+This component uses [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame) which is also used in [React](https://reactjs.org/blog/2017/09/26/react-v16.0.html#javascript-environment-requirements).
 
 ## Demo
 See a working [react-idle demo](https://react-idle.modus.app/) and compare rendering performance between syncronous rendering and rendering on idle.
@@ -38,7 +38,7 @@ export default class MyView extends React.Component {
 ```
 
 ### Dependencies
-React Idle doesn't have any direct dependencies. Since it's meant to be used with React, it expects that your project aready depends on [`react`](https://www.npmjs.com/package/react) and [`react-dom`](https://www.npmjs.com/package/react-dom).
+React Idle has only one direct dependency: [idlize](https://www.npmjs.com/package/idlize). Since it's meant to be used with React, it expects that your project already depends on [`react`](https://www.npmjs.com/package/react) and [`react-dom`](https://www.npmjs.com/package/react-dom).
 
 NPM will not automatically install these dependencies for you, but it will show a friendly warning message with instructions.
 
