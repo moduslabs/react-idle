@@ -1,6 +1,6 @@
 {
   "name": "@modus/react-idle",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Render components when browser is idle",
   "main": "dist/commonjs/index.js",
   "module": "dist/es/index.js",
@@ -79,8 +79,8 @@
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-prettier": "2.6.0",
     "eslint-plugin-react": "7.9.1",
-    "flow-bin": "0.74.0",
-    "flow-copy-source": "2.0.0",
+    "flow-bin": "0.98.0",
+    "flow-copy-source": "2.0.4",
     "husky": "0.14.3",
     "jest": "23.6.0",
     "jest-junit": "5.1.0",

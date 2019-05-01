@@ -1,7 +1,15 @@
+/**
+ * React Idle v1.1.1
+ * (c) Modus Create
+ * MIT Licensed
+ * https://labs.moduscreate.com
+ */
+
 // @flow
 import * as React from 'react';
 import { IdleQueue } from 'idlize/IdleQueue.mjs';
 
+// Initialize the global queue manager
 const queue = new IdleQueue();
 
 type Props = {
@@ -22,6 +30,7 @@ type Props = {
 };
 
 type State = {
+  // The ready flag triggers re-render when needed
   ready: boolean,
 };
 
@@ -34,7 +43,7 @@ const isBrowser = !!(
   window.document.createElement
 );
 
-export default class OnIdle extends React.Component<Props, State> {
+class OnIdle extends React.Component<Props, State> {
   static defaultProps = {
     placeholder: null,
   };
@@ -58,28 +67,34 @@ export default class OnIdle extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
+    // Call the onRender function (if it exists) after the children have been rendered
     if (!prevState.ready && this.state.ready && typeof this.props.onRender === 'function') {
       this.props.onRender();
     }
   }
 
   componentWillUnmount() {
+    // Cleanup
     this.clearJob();
   }
 
   clearJob = () => {
+    // Remove this task from the global queue
     queue.unshiftTask(this.queueRendering);
   };
 
   requestIdle = () => {
+    // Clear the existing job if exists to avoid duplicates
     this.clearJob();
     if (this.props.skipSSR !== true) {
+      // Queue up
       this.job = queue.pushTask(this.queueRendering);
     }
   };
 
   // Render when DOM is ready, not earlier
   queueRendering = () => {
+    // We request animation frame so that rendering doesn't happen during another ongoing process
     requestAnimationFrame(this.readyToRender);
   };
 
@@ -91,10 +106,15 @@ export default class OnIdle extends React.Component<Props, State> {
 
   render() {
     // Don't render anything if we are skipping SSR
-    if (((process.env.NODE_ENV === 'test' && window.__SSR__) || !isBrowser) && this.props.skipSSR) {
+    if (
+      ((process.env.NODE_ENV === 'test' && '__SSR__' in window && window.__SSR__) || !isBrowser) &&
+      this.props.skipSSR
+    ) {
       return null;
     }
 
-    return this.state.ready ? this.props.children : this.props.placeholder;
+    return this.state.ready ? this.props.children : this.props.placeholder || null;
   }
 }
+
+export default OnIdle;
